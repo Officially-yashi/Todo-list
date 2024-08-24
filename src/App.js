@@ -2,8 +2,6 @@ import React, { useRef } from "react";
 
 //heyyyyaaaaaaaa
 
-
-
 function App() {
 
   const inputRef = useRef(null)
@@ -13,26 +11,36 @@ function App() {
 
     if (inputRef.current.value === "") {
       alert("you must write something");
-    } else {
+    }
+     else {
       let li = document.createElement("li");
       li.innerHTML = inputRef.current.value + "\t";
       containerRef.current.appendChild(li);
   
       let deleteButton = document.createElement("span");
-      deleteButton.classList.add("border" , "rounded-full" , "px-4" , "py-1" , "cursor-pointer" , "bg-green-500" , "hover:text-sm" , "duration-100")
+      deleteButton.classList.add ("ml-40","border","rounded-full" ,"px-4" , "py-1" , "cursor-pointer" , "bg-violet-500" , "hover:text-sm" , "duration-100" , "hover:bg-fuchsia-800","hover:ring-white","hover:ring-1")
+      
       deleteButton.addEventListener("click", function () {
         li.remove();
+        saveData();
       });
       deleteButton.innerHTML = "Delete";
       li.appendChild(deleteButton);
     }
     inputRef.current.value = "";
+    saveData();
   }
 
-
+  function saveData(){
+    localStorage.setItem("data",containerRef.innerHTML);
+  }
+  function showTask(){
+    containerRef.innerHTML=localStorage.getItem("data");
+  }
+showTask();
   return (
     <div className=" bg-purple-900 h-screen flex items-center ">
-      <div className="mx-auto justify-center w-96  h-64 border hover:shadow-purple-100 hover:shadow-inner rounded-lg ">
+      <div className=" h-auto mx-auto justify-center w-96 border hover:shadow-purple-100 hover:shadow-inner rounded-lg ">
         <div className="text-white mx-auto flex justify-center mt-3 font-semibold items-center">
           TO-DO LIST
         </div>
@@ -47,7 +55,7 @@ function App() {
             />
             <button
               onClick={addTask}
-              className="absolute mr-5 top-0 end-0 p-2.5 h-9 mt-3 hover:ring-2 hover:ring-white text-white text-sm hover:bg-fuchsia-800 bg-violet-400 px-4 rounded-md"
+              className="absolute mr-5 top-0 end-0 p-2.5 h-9 mt-3 hover:ring-2 hover:ring-white text-white text-sm  hover:bg-fuchsia-800 bg-violet-400 px-4 rounded-md"
             >
               Add
             </button>
