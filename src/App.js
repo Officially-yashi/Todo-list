@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import './App.css'
 
 //heyyyyaaaaaaaa
 
@@ -14,12 +15,15 @@ function App() {
     }
      else {
       let li = document.createElement("li");
-      li.innerHTML = inputRef.current.value + "\t";
+      let txt = document.createElement("span")
+      txt.innerHTML = `<span> ${inputRef.current.value + "\t"} </span>`
+      txt.classList.add("flex-1")
+      li.classList.add("flex" , "px-2", "my-2")
       containerRef.current.appendChild(li);
+      li.appendChild(txt)
   
       let deleteButton = document.createElement("span");
-      deleteButton.classList.add ("ml-40","border","rounded-full" ,"px-4" , "py-1" , "cursor-pointer" , "bg-violet-500" , "hover:text-sm" , "duration-100" , "hover:bg-fuchsia-800","hover:ring-white","hover:ring-1")
-      
+      deleteButton.classList.add("border" , "rounded-full" , "px-4" , "py-1" , "cursor-pointer" , "bg-green-500" , "hover:text-sm" , "duration-100" )
       deleteButton.addEventListener("click", function () {
         li.remove();
         saveData();
@@ -39,8 +43,8 @@ function App() {
   }
 showTask();
   return (
-    <div className=" bg-purple-900 h-screen flex items-center ">
-      <div className=" h-auto mx-auto justify-center w-96 border hover:shadow-purple-100 hover:shadow-inner rounded-lg ">
+    <div className=" bg-purple-900 h-screen flex items-center py-48">
+      <div className="mx-auto justify-center w-96 border hover:shadow-purple-100 hover:shadow-inner rounded-lg overflow-hidden h-full">
         <div className="text-white mx-auto flex justify-center mt-3 font-semibold items-center">
           TO-DO LIST
         </div>
@@ -61,8 +65,8 @@ showTask();
             </button>
           </div>
         </div>
-        <ul ref={containerRef} id="list-container" className="m-3 p-2 text-white">
-          <li className=""></li>
+        <ul ref={containerRef} id="list-container" className="m-3 p-2 text-white h-[65%] ">
+          <li className="flex flex-col w-full"></li>
         </ul>
       </div>
     </div>
